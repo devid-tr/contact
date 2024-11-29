@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 import { Client, Databases, ID } from "appwrite";
 
-let projectId='672ba41900048b82db32'
-let databaseId='672ba57200092ef16cd6'
-let collectionId='67483d8b0027af59a89c'
+let projectId=import.meta.env.VITE_APPWRITE_PROJECT_ID
+let databaseId=import.meta.env.VITE_APPWRITE_DATABASE_ID
+let collectionId=import.meta.env.VITE_APPWRITE_COLLECTION_ID
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
