@@ -1,33 +1,1050 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="image"></div>
-    <div class="contactContainer">
-        <h2>Get in Touch</h2>
-        <p>We'd love to hear from you! Fill out the form below to send us a message.</p>
-        <form id="contact-form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graphics Designer Portfolio - Premium UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #a855f7; /* Purple */
+        --secondary-color: #3b82f6; /* Blue */
+        --accent-color: #fde047; /* Yellow */
+        --dark-bg: #111827;
+        --light-bg: #1f2937;
+        --text-light: #f9fafb;
+        --text-dark: #e5e7eb;
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --transition-duration: 0.3s;
+        --scrollbar-thumb: var(--primary-color);
+        --scrollbar-track: var(--light-bg);
+      }
+
+      [data-theme="light"] {
+        --dark-bg: #f9fafb;
+        --light-bg: #fff;
+        --text-light: #1f2937;
+        --text-dark: #4b5563;
+        --card-bg: rgba(0, 0, 0, 0.05);
+        --glass-bg: rgba(0, 0, 0, 0.05);
+        --scrollbar-thumb: var(--secondary-color);
+        --scrollbar-track: #f3f4f6;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb);
+        border-radius: 4px;
+      }
+
+      /* Navbar */
+      nav {
+        background-color: var(--light-bg);
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--card-bg);
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--text-light);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+
+      .nav-links li {
+        margin-left: 25px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        transition: color var(--transition-duration);
+        padding: 8px 15px;
+        border-radius: 5px;
+      }
+
+      .nav-links a:hover {
+        color: var(--text-light);
+        background-color: var(--primary-color);
+      }
+
+      .mobile-menu-button {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--text-light);
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        height: 90vh; /*Viewport height*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        background-image: url("https://images.unsplash.com/photo-1517694720214-26272309d7df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        color: var(--text-light);
+        overflow: hidden; /* Ensure overlay stays within bounds */
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 30px;
+      }
+
+      .hero-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px var(--shadow-color);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        text-shadow: 1px 1px 2px var(--shadow-color);
+      }
+
+      .hero-button {
+        background-color: var(--accent-color);
+        color: var(--dark-bg);
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform var(--transition-duration),
+          box-shadow var(--transition-duration);
+        box-shadow: 0 4px 6px var(--shadow-color);
+        text-decoration: none;
+        display: inline-block; /* Needed for correct box-shadow */
+      }
+
+      .hero-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px var(--shadow-color);
+      }
+
+      /* Sections General Styles */
+      section {
+        padding: 80px 30px;
+      }
+
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* About Section */
+      #about {
+        background-color: var(--light-bg);
+        color: var(--text-light);
+      }
+
+      #about .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      #about-image {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 5px 5px 15px var(--shadow-color);
+      }
+
+      #about-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease;
+      }
+
+      #about-image:hover img {
+        transform: scale(1.1);
+      }
+
+      #about-content h2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--text-light);
+      }
+
+      #about-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-dark);
+      }
+      #about-content span {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      /* Services Section */
+      #services {
+        background-color: var(--dark-bg);
+      }
+
+      #services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        backdrop-filter: blur(10px); /* Glass effect */
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transition: transform var(--transition-duration),
+          border var(--transition-duration);
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        border: 1px solid var(--primary-color);
+        box-shadow: 0 6px 8px var(--shadow-color);
+      }
+
+      .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        transition: transform var(--transition-duration);
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.2);
+      }
+
+      .service-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--text-light);
+      }
+
+      .service-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-dark);
+      }
+
+      /* Portfolio Section */
+      #portfolio {
+        background-color: var(--light-bg);
+      }
+
+      #portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .portfolio-item {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 5px 5px 15px var(--shadow-color);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .portfolio-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: opacity var(--transition-duration);
+        object-fit: cover;
+      }
+
+      .portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity var(--transition-duration);
+      }
+
+      .portfolio-item:hover .portfolio-overlay {
+        opacity: 1;
+      }
+      .portfolio-item:hover img {
+        opacity: 0.7;
+      }
+
+      .portfolio-text {
+        color: var(--text-light);
+        text-align: center;
+        padding: 20px;
+      }
+
+      .portfolio-title-card {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .portfolio-category {
+        font-size: 1rem;
+        font-style: italic;
+      }
+
+      /* Testimonials Section */
+      #testimonials {
+        background-color: var(--dark-bg);
+      }
+
+      #testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* Glass effect */
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transition: transform var(--transition-duration);
+        text-align: center;
+      }
+
+      .testimonial-card:hover {
+        transform: scale(1.03);
+      }
+
+      .testimonial-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border: 2px solid var(--primary-color);
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+      }
+
+      .testimonial-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .testimonial-quote {
+        font-style: italic;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        color: var(--text-light);
+      }
+
+      .testimonial-company {
+        font-size: 0.9rem;
+        color: var(--text-dark);
+      }
+
+      /* Skills Section */
+      #skills {
+        background-color: var(--light-bg);
+      }
+
+      #skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: center;
+      }
+
+      .skill-item {
+        padding: 20px;
+      }
+
+      .circle-container {
+        width: 80px; /* Adjust size to match skill-icon-container */
+        height: 80px; /* Adjust size to match skill-icon-container */
+        position: relative; /* For positioning the SVG overlay */
+        border-radius: 50%;
+        background-color: var(--card-bg); /* Use card background color */
+        cursor: pointer;
+        overflow: hidden; /* To clip content if needed */
+        display: flex; /* Center icon inside circle */
+        justify-content: center; /* Center icon inside circle */
+        align-items: center; /* Center icon inside circle */
+        margin: 0 auto 20px; /* Keep existing margin */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transition: transform var(--transition-duration);
+      }
+
+      .circle-container:hover {
+        transform: scale(1.1);
+      }
+
+      .circle-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .circle-border {
+        fill: none; /* No fill for the circle, we only want the border */
+        stroke: var(--secondary-color); /* Border color, using secondary color */
+        stroke-width: 2px; /* Slightly thicker border for visibility */
+        stroke-dasharray: 251.327; /* Calculated for r=40, will be set by JS */
+        stroke-dashoffset: 251.327; /* Calculated for r=40, will be set by JS */
+        transition: stroke-dashoffset 1s linear; /* Shorter animation duration */
+        transform-origin: 50% 50%; /* Ensure rotation is around the center */
+        transform: rotate(-90deg); /* Start drawing from the top */
+      }
+
+      .circle-container:hover .circle-border {
+        stroke-dashoffset: 0; /* Animate to 0 to complete the circle drawing */
+      }
+
+      .skill-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color); /* Keep icon color */
+        position: relative; /* Ensure icon is above the svg */
+      }
+
+
+      /* Contact Section */
+      #contact {
+        background-color: var(--dark-bg);
+      }
+      #contact .container {
+        text-align: center;
+      }
+
+      #contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+      .contact-card {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* Glass effect */
+        box-shadow: 0 4px 6px var(--shadow-color);
+        text-align: center;
+        transition: transform var(--transition-duration);
+      }
+      .contact-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .contact-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: var(--accent-color);
+      }
+      .contact-title-card {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+      .contact-detail {
+        font-size: 1rem;
+        color: var(--text-dark);
+      }
+      .contact-detail a {
+        color: var(--text-dark);
+        text-decoration: none;
+        transition: color var(--transition-duration);
+      }
+      .contact-detail a:hover {
+        color: var(--text-light);
+      }
+
+      /* Footer Section */
+      footer {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        padding: 30px;
+        text-align: center;
+        border-top: 1px solid var(--card-bg);
+      }
+
+      .social-icons {
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: inline-block;
+        font-size: 1.3rem;
+        color: var(--text-dark);
+        margin: 0 15px;
+        transition: color var(--transition-duration),
+          transform var(--transition-duration);
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 20px;
+        }
+
+        .nav-links {
+          display: none; /* Hide nav links on mobile */
+          position: absolute;
+          top: 70px; /* Adjust based on nav height */
+          left: 0;
+          background-color: var(--light-bg);
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          box-shadow: 0 2px 4px var(--shadow-color);
+          padding: 20px;
+        }
+
+        .nav-links.show {
+          display: flex; /* Show nav links when mobile menu is active */
+        }
+
+        .nav-links li {
+          margin: 15px 0;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px 15px;
+          width: 100%;
+        }
+
+        .mobile-menu-button {
+          display: block; /* Show mobile menu button on mobile */
+        }
+
+        .hero-section {
+          height: auto;
+          padding: 50px 20px;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+
+        #about .container {
+          grid-template-columns: 1fr; /* Stack on mobile */
+        }
+        #about-image {
+          order: -1; /* Image on top for mobile */
+        }
+
+        section {
+          padding: 60px 20px;
+        }
+        .section-title {
+          font-size: 2rem;
+          margin-bottom: 40px;
+        }
+        .section-subtitle {
+          margin-bottom: 30px;
+        }
+
+        #services-grid,
+        #portfolio-grid,
+        #testimonial-grid,
+        #skills-container,
+        #contact-info {
+          grid-template-columns: 1fr; /* Single column on mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="logo">DesignFlow</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-button">
+        <i class="fa fa-bars" onclick="toggleMobileMenu()"></i>
+      </div>
+    </nav>
+
+    <header class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Crafting Digital Experiences</h1>
+        <p class="hero-subtitle">
+          I'm a graphics designer passionate about creating
+          <span style="font-weight: bold; color: var(--accent-color)"
+            >stunning and effective visuals</span
+          >
+          that bring your brand to life. Let's collaborate to elevate your
+          vision.
+        </p>
+        <a href="#portfolio" class="hero-button">Explore My Work</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div id="about-image">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/29/03/35/girl-1867092_640.jpg"
+            alt="Graphics Designer"
+          />
+        </div>
+        <div id="about-content">
+          <h2 class="section-title" style="text-align: left; font-size: 2rem">
+            About Me
+          </h2>
+          <p>
+            Hello! I'm a freelance graphic designer with over 5 years of
+            experience in creating impactful visuals for businesses and
+            individuals. I specialize in
+            <span style="color: var(--primary-color)">brand identity</span>,
+            <span style="color: var(--secondary-color)">web design</span>, and
+            <span style="color: var(--accent-color)">illustration</span>. My
+            goal is to help you communicate your message clearly and beautifully
+            through design.
+          </p>
+          <p>
+            I believe in a collaborative approach and work closely with my
+            clients to ensure their vision is realized. My design process is
+            <span style="font-weight: bold">user-centered</span>, focusing on
+            creating solutions that are not only aesthetically pleasing but also
+            highly functional and effective. Let's discuss your project and see
+            how we can bring your ideas to life!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">My Services</h2>
+      <p class="section-subtitle">
+        Explore the range of design services I offer to elevate your brand.
+      </p>
+      <div class="container">
+        <div id="services-grid">
+          <div class="service-card">
+            <i class="fas fa-pencil-ruler service-icon"></i>
+            <h3 class="service-title">Brand Identity Design</h3>
+            <p class="service-description">
+              Crafting unique logos, brand guidelines, and visual elements that
+              define your brand's personality and create a lasting impression.
+            </p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-palette service-icon"></i>
+            <h3 class="service-title">Web & UI Design</h3>
+            <p class="service-description">
+              Designing user-friendly and visually appealing website interfaces
+              and digital experiences that engage your audience and drive
+              results.
+            </p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-paint-brush service-icon"></i>
+            <h3 class="service-title">Illustration & Graphics</h3>
+            <p class="service-description">
+              Creating custom illustrations, icons, and graphics for websites,
+              marketing materials, and social media to enhance visual
+              communication.
+            </p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-bullhorn service-icon"></i>
+            <h3 class="service-title">Marketing Collateral</h3>
+            <p class="service-description">
+              Designing brochures, flyers, posters, and other marketing
+              materials that effectively promote your products and services to
+              your target audience.
+            </p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-photo-video service-icon"></i>
+            <h3 class="service-title">Social Media Graphics</h3>
+            <p class="service-description">
+              Creating engaging and eye-catching graphics optimized for various
+              social media platforms to boost your online presence and
+              engagement.
+            </p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-box-open service-icon"></i>
+            <h3 class="service-title">Packaging Design</h3>
+            <p class="service-description">
+              Developing creative and functional packaging solutions that
+              protect your products while enhancing shelf appeal and brand
+              recognition.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-subtitle">
+        A selection of my recent work, showcasing my design skills and
+        versatility.
+      </p>
+      <div class="container">
+        <div id="portfolio-grid">
+          <div class="portfolio-item">
+            <img
+              src="https://cdn.pixabay.com/photo/2024/01/04/15/42/sailing-8487722_640.png"
+              alt="Project 3"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-text">
+                <h3 class="portfolio-title-card">
+                  Mobile App UI for Fitness Platform
+                </h3>
+                <p class="portfolio-category">UI/UX Design</p>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="https://cdn.pixabay.com/photo/2024/02/25/13/30/shoes-8595773_640.jpg"
+              alt="Project 4"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-text">
+                <h3 class="portfolio-title-card">
+                  Illustration Series for Children's Book
+                </h3>
+                <p class="portfolio-category">Illustration</p>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="message">Describe your website in short</label>
-                <textarea id="message" name="message" placeholder="Short Description" required></textarea>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="https://cdn.pixabay.com/photo/2023/12/07/22/24/cherry-blossoms-8436420_640.jpg"
+              alt="Project 5"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-text">
+                <h3 class="portfolio-title-card">
+                  Packaging Design for Gourmet Coffee
+                </h3>
+                <p class="portfolio-category">Packaging</p>
+              </div>
             </div>
-            <button type="submit">Submit</button>
-            <p>Let's build your website together!</p> 
-        </form>
-    </div>
-    <script type="module" src="main.js"></script>
-</body>
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="https://cdn.pixabay.com/photo/2024/09/11/06/00/character-9038820_640.jpg"
+              alt="Project 6"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-text">
+                <h3 class="portfolio-title-card">
+                  Social Media Campaign for Summer Sale
+                </h3>
+                <p class="portfolio-category">Social Media</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2 class="section-title">Testimonials</h2>
+      <p class="section-subtitle">
+        What my clients are saying about working with me.
+      </p>
+      <div class="container">
+        <div id="testimonial-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/08/29/16/08/pikachu-5527377_640.jpg"
+                alt="Client 1"
+              />
+            </div>
+            <p class="testimonial-quote">
+              "Working with [Your Name] was an absolute pleasure! Their
+              creativity and attention to detail are unmatched. They truly
+              understood our brand vision and brought it to life in ways we
+              couldn't have imagined."
+            </p>
+            <p class="testimonial-author">Sarah Johnson</p>
+            <p class="testimonial-company">CEO, Tech Solutions Inc.</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/08/09/12/12/pop-5475382_640.jpg"
+                alt="Client 2"
+              />
+            </div>
+            <p class="testimonial-quote">
+              "[Your Name] delivered exceptional design work for our marketing
+              campaign. Their designs were not only visually stunning but also
+              highly effective in attracting our target audience and boosting
+              our engagement."
+            </p>
+            <p class="testimonial-author">Michael Brown</p>
+            <p class="testimonial-company">
+              Marketing Director, Global Enterprises
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">My Skills</h2>
+      <p class="section-subtitle">
+        Proficiencies in design tools and techniques.
+      </p>
+      <div class="container">
+        <div id="skills-container">
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-a skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">Adobe Creative Suite</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-vector-square skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">Vector Graphics</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-image skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">Image Editing</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-code skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">Web Design Principles</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-palette skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">Color Theory</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon-container">
+              <div class="circle-container">
+                <svg class="circle-svg">
+                  <circle class="circle-border" cx="40" cy="40" r="40" />
+                </svg>
+                <i class="fas fa-tachometer-alt skill-icon"></i>
+              </div>
+            </div>
+            <h3 class="skill-name">UI/UX Design</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact Me</h2>
+      <p class="section-subtitle">
+        Let's discuss your project or collaboration opportunities.
+      </p>
+      <div class="container">
+        <div id="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <h3 class="contact-title-card">Email</h3>
+            <p class="contact-detail">
+              <a href="mailto:contact@example.com">contact@example.com</a>
+            </p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone contact-icon"></i>
+            <h3 class="contact-title-card">Phone</h3>
+            <p class="contact-detail">
+              <a href="tel:+15551234567">+1 555-123-4567</a>
+            </p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <h3 class="contact-title-card">Location</h3>
+            <p class="contact-detail">New York, USA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Graphics Designer Portfolio. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMobileMenu() {
+        var navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("show");
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const circles = document.querySelectorAll('.circle-border');
+
+        circles.forEach(circle => {
+          const radius = circle.getAttribute('r');
+          const circumference = 2 * Math.PI * radius;
+
+          circle.setAttribute('stroke-dasharray', circumference);
+          circle.setAttribute('stroke-dashoffset', circumference);
+        });
+      });
+    </script>
+  </body>
 </html>
