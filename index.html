@@ -1099,6 +1099,7 @@
         }
 
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('touchstart', handleScroll); // Add touchstart event listener for mobile
         handleScroll(); // Check on initial load in case section is already in viewport
       });
     </script>
